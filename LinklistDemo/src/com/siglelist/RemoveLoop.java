@@ -62,6 +62,7 @@ class LinkedList {
 		// if loop exists
 		// remove loop
 		if(slow == fast){
+			System.out.println("loop exists");
 			slow = node;
 			while(slow.next != fast.next){
 				slow = slow.next;
