@@ -3,6 +3,8 @@
  */
 package com.doublelist;
 
+import java.util.LinkedList;
+
 /**
  * @author Ritam
  *
@@ -15,6 +17,15 @@ public class DoubleLinkedList {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		DoublyList<Integer> myList = new DoublyList<Integer>();
+		LinkedList<Integer> link = new LinkedList<Integer>();
+		link.add(1);
+		link.add(2);
+		link.add(3);
+		link.add(4);
+		link.add(5);
+		//link.add(6);		
+		int n = link.size();
+		System.out.println("middle ement from normal linked list "+link.get(n/2));
 		myList.addLast(1);
 		myList.addLast(2);
 		myList.addLast(3);

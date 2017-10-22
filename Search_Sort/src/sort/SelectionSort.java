@@ -23,5 +23,20 @@ public class SelectionSort {
 			
 		}
 	}
+	public void sort2(int [] a){
+		for(int i=0;i<a.length;i++){
+			int minVal = a[i];
+			int j,minIndex = i;
+			for(j=i+1;j<a.length;j++){
+				if(a[j]<minVal){
+					minVal = a[j];
+					minIndex = j;
+				}
+			}
+			int temp = a[i];
+			a[i]= a[minIndex];
+			a[minIndex] = temp;			
+		}
+	}
 
 }

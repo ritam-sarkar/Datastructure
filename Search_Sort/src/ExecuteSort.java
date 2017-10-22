@@ -57,13 +57,13 @@ public class ExecuteSort {
 		 * Selection sort
 		 */
 		
-		int selArr[] = Utility.sortableArray("bubworse");
-		//int selArr[] = new int[]{4,2,2,6,7,9,8,3};
+		//int selArr[] = Utility.sortableArray("bubworse");
+		int selArr[] = new int[]{4,2,2,6,7,9,8,3};
 		System.out.println("Before selection sort");
 		display(selArr);
 		startTime = System.nanoTime();	
 		SelectionSort selectSort = new SelectionSort();
-		selectSort.sort(selArr);
+		selectSort.sort2(selArr);
 		estimatedTime = System.nanoTime() - startTime;
 		System.out.println("estimated time for selection sort "+estimatedTime);
 		

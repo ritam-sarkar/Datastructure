@@ -14,6 +14,10 @@ public class BinaryTree {
 
 	protected Node root;
 	
+	public Node getRoot(){
+		return this.root;
+	}
+	
 	public class Node
     {
         int key;
@@ -162,6 +166,20 @@ public class BinaryTree {
 			result = search(node.right, item);
 		}
 		return result;
+	}
+	public int sumLeafNodes(Node curr){
+		Node node = curr;
+		int s=0;
+		if(node != null){
+			if(node.left == null && node.right ==null){
+				s = node.key;
+			}else{
+				s += sumLeafNodes(node.left);
+				s += sumLeafNodes(node.right);
+			}
+		}		
+		return s;
+		
 	}
 	protected Node insert(Node curr, int item) {		
 		if(curr == null){
