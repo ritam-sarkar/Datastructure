@@ -25,14 +25,16 @@ public class MergeSortByForkJoin {
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
 		MergeSortByForkJoin demo = new MergeSortByForkJoin();
 		int[] a = {3,5,2,7,9,11,17};
+		int[] mergedArr;
 		ForkJoinPool forkJoinPool = new ForkJoinPool();
 		MergeSort mergeSort = demo.new MergeSort(a);
 		/** process 1 : execute, invoke and join()
 		 *  process 2 :  submit, future or join()
-		 *  process 3 : invoke and join
+		 *  process 3 : invoke , here we don't need to wait for the task to be end
 		 */
 		//forkJoinPool.execute(mergeSort);
 		Future<int[]> future = forkJoinPool.submit(mergeSort);
+		mergedArr = forkJoinPool.invoke(mergeSort);
 		while(!mergeSort.isDone()){
 			System.out.println("level of parellelism "+forkJoinPool.getParallelism());
 			System.out.println(" no of active threads "+forkJoinPool.getActiveThreadCount());
@@ -40,7 +42,9 @@ public class MergeSortByForkJoin {
 		}
 		forkJoinPool.shutdown();
 		//System.out.println(mergeSort.join());
-		System.out.println(future.get());
+		//System.out.println(future.get());
+		mergedArr = future.get();
+		System.out.println(mergedArr);
 		
 		
 
@@ -68,6 +72,7 @@ public class MergeSortByForkJoin {
 			task2.fork();
 			int[] mergedArr = new int[unsortedArr.length];
 			// merge to sorted array
+			
 			merge(task1.join(),task2.join(),mergedArr);
 			return mergedArr;
 			
