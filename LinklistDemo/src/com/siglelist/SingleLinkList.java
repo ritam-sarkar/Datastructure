@@ -15,17 +15,21 @@ public class SingleLinkList {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-       //LinkedList<String> linlist;
+        LinkedList<String> linkList = new LinkedList<String>();
+        linkList.addFirst("A");
+        linkList.addLast("B");
+        linkList.addLast("C");
+        linkList.add(1,"X");
+        
 		MySingleList<String> myList = new MySingleList<String>();		
 		myList.addFirst("A");
 		myList.addLast("B");
 		myList.addLast("C");
-		myList.add(3, "D");
-		myList.add(2,"X");
-		System.out.println(" last value "+myList.getLast());
+		myList.add(1,"X");
+		/*System.out.println(" last value "+myList.getLast());
 		System.out.println(" first value "+myList.getFirst());
-		System.out.println(" size "+myList.size());
-		System.out.println(" index 2 "+myList.get(2));
+		System.out.println(" size "+myList.size());*/
+		System.out.println(" index 2 "+linkList.get(2));
 		
 	}
 
@@ -35,11 +39,12 @@ class MySingleList<T> {
 	private Node<T> first;
 	private Node<T> last;
 	private int modcount;
+	private transient int size; 
 	public MySingleList() {
 				
 	}	
 	public int size(){
-		return this.modcount;
+		return this.size;
 	}
 	public void addLast(T item){
 		
@@ -52,6 +57,7 @@ class MySingleList<T> {
 			this.last = currentNode;
 		}		
 		this.modcount++;
+		this.size++;
 	}
 	public void addFirst(T item){
 		Node<T> currentNode = new Node<T>(item);
@@ -64,6 +70,7 @@ class MySingleList<T> {
 			this.first.setNext(tempNode);
 		}
 		this.modcount++;
+		this.size++;
 	}
 	public void add(T item){
 		this.addLast(item);
@@ -72,12 +79,13 @@ class MySingleList<T> {
 		if(index < 0 || index > this.modcount){
 			throw new ArrayIndexOutOfBoundsException();
 		}else{
-			if(index == this.modcount){
+			if(index == this.size){
 				linkLast(item);
 			}else{
 				linkMiddle(item,node(index-1),node(index));
 			}
 			this.modcount++;
+			this.size++;
 		}
 	}
 	private Node<T> node(int index){

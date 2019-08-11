@@ -92,6 +92,9 @@ public class BinaryTree {
     		}        	
     	}    	
     	return kSmallest;    	
+    	
+    	
+    	
     }
     /**
      * Right root left traversal
@@ -191,6 +194,17 @@ public class BinaryTree {
 			curr.right = insert(curr.right,item);
 		}
 		return curr;		
+	}
+	
+	public static void main(String args[]) {
+		BinaryTree binTree = new BinaryTree();
+		binTree.insert(15);
+		binTree.insert(10);
+		binTree.insert(28);
+		binTree.insert(8);
+		binTree.insert(12);
+		binTree.insert(17);
+		System.out.println(binTree.findKthSmallest(6));
 	}
 
 }

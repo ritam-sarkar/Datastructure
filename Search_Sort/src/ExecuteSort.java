@@ -63,7 +63,7 @@ public class ExecuteSort {
 		display(selArr);
 		startTime = System.nanoTime();	
 		SelectionSort selectSort = new SelectionSort();
-		selectSort.sort2(selArr);
+		selectSort.sort(selArr);
 		estimatedTime = System.nanoTime() - startTime;
 		System.out.println("estimated time for selection sort "+estimatedTime);
 		

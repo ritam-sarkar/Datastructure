@@ -13,6 +13,7 @@
  / \
 4   5                                       
 
+https://www.geeksforgeeks.org/check-if-two-trees-are-mirror/
  * 
  * 
  */
@@ -28,7 +29,7 @@ public class MirrorBinaryTree {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
        Node a = new Node(1);
        Node b = new Node(1);
        a.left = new Node(2);

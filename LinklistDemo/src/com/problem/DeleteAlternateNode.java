@@ -1,14 +1,17 @@
 package com.problem;
 
+import com.problem.ConsonantVowelSegregate.LinkList.Node;
+
 public class DeleteAlternateNode {
 
 	public static void main(String[] args) {
 
 		LinkedList list = new LinkedList();
-		int [] arr = {1,2,3,4,5,6,7,8,9};
+		int [] arr = {1,3,2,4,5,6,7,8,9};
 		list.insert(arr);
 		list.alternateDelete();
 		System.out.println(list);
+		list.printList();
 	}
 	static class LinkedList{
 		
@@ -36,6 +39,14 @@ public class DeleteAlternateNode {
 				this.next = next;
 			}
 			
+		}
+		public void printList(){
+			Node node = root;
+			while(node != null) {
+				System.out.print(node.data+"  ");
+				node = node.next;
+			}
+			System.out.println();
 		}
 		void insert(int[] arr){
 			Node node = null;

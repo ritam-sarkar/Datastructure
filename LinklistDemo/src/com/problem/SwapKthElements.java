@@ -1,5 +1,6 @@
 /**
- * 
+ *  https://www.geeksforgeeks.org/swap-kth-node-from-beginning-with-kth-node-from-end-in-a-linked-list/
+ *  
  */
 package com.problem;
 
@@ -23,6 +24,7 @@ public class SwapKthElements {
 		list.add(23);
 		list.add(51);
 		list.swapTwoElement(3);
+		//list.swapNode(51, 10);
 		System.out.println(list);
 		
 
@@ -73,6 +75,44 @@ class LinkedList{
 		x.data = y.data;
 		y.data = xData;    	
 		
+    }
+    public void swapNode(int x, int y) {
+       Node nodeX = null;
+       Node nodeY = null;
+       Node nodeXPrev = null;
+       Node nodeYPrev = null;
+       Node prev = null;
+       Node node = first;
+       while(node != null) {
+    	   if(node.data == x) {
+    		   nodeX = node;
+    		   nodeXPrev = prev;
+    	   }
+    	   if(node.data == y) {
+    		   nodeY = node;
+    		   nodeYPrev = prev;
+    	   }
+    	   if(nodeX != null && nodeY != null) {
+    		   break;
+    	   }
+    	   prev = node;
+    	   node = node.next;
+       }
+       if(nodeXPrev == null) {
+    	   this.first = nodeY;   
+       }else {
+    	   nodeXPrev.next = nodeY; 
+       }
+       if(nodeYPrev == null) {
+    	   this.first = nodeX;
+       }else {
+           nodeYPrev.next = nodeX;
+       }
+       Node Xnext = nodeX.next;
+       Node Ynext = nodeY.next;
+       nodeY.next = Xnext;
+       nodeX.next = Ynext;       
+       
     }
 	
 	

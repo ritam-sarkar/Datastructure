@@ -21,7 +21,8 @@ public class ReverseLinkedList {
 		list.head.next.next =  new LinkedList2.Node(6);
 		list.head.next.next.next =  new LinkedList2.Node(7);
 		list.traverse();
-		list.head = list.reverse(list.head);
+		System.out.println();
+		list.reverse();
 		list.traverse();
 		
 
@@ -56,22 +57,20 @@ class LinkedList2{
 	public void traverse(){
 		Node x = this.head;
 		while(x != null){	
-			System.out.println(x.data);
+			System.out.print(x.data+" ");
 			x = x.next;
 		}		
 	}
-	public Node reverse(Node node){
+	public void reverse(){
 		Node prev = null;
-		Node current = node;
-		Node next = null;
-		while(current != null){
-			next = current.next;
-			current.next = prev;
-			prev = current;
-			current = next;
-		}
-		node = prev;
-		return node;
+		Node node = head;
+        while(node != null) {
+        	Node next = node.next;
+        	node.next = prev;
+        	prev = node;
+        	node = next;
+        }
+        head = prev;
 	}
 	
 }

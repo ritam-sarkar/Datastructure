@@ -151,9 +151,7 @@ class MyConCurrentHashMap<K,V> {
 		return this.modcount;
 	}
 	
-	public Set<K> keySet(){
-		
-	}
+	
 	private int hashIndex(int hash){
 		return hash & (this.capacity-1);
 	}

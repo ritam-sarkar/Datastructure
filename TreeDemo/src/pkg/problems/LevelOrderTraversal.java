@@ -20,12 +20,13 @@ package pkg.problems;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 /**
  * @author Ritam
  *
  */
-public class LavelOrderTraversal {
+public class LevelOrderTraversal {
 
 	/**
 	 * @param args
@@ -45,9 +46,8 @@ public class LavelOrderTraversal {
        
        BinTree binTree = new BinTree();
        binTree.root = root;
-       //binTree.printLevelWise();
-       //binTree.printLavelOrder();
-       binTree.printReverse();
+       binTree.printLevelOrder();
+       binTree.printReverseLevelOrder2();
        
 		
 	}
@@ -56,69 +56,66 @@ public class LavelOrderTraversal {
 class BinTree{
 	Node root;
 	
-	void printLevelWise(){
-		int h = height();
-		for(int i=0;i<=h;i++){
-			printRecc(root,i);
-			System.out.println();
-		}
-	}	
-	void printRecc(Node node,int level){		
-		
-		if(node == null){
-			return;
-		}
-		if(level ==0){
-			System.out.print(" "+node.key+" ");
-		}else{
-			printRecc(node.left, level-1);
-			printRecc(node.right, level-1);
-		}
-	}
-	public void printLavelOrder(){
+	public void printLevelOrder() {
 		Queue<Node> q = new LinkedList<Node>();
-		q.add(root);		
-		while(true){
-			int level = q.size();
-			if(level == 0){
-				break;
+		q.add(root);
+		while(q.size() >0) {
+			Node node = q.poll();
+			System.out.print(node.key+" ");
+			if(node.left != null) {
+			   q.add(node.left);
 			}
-			while(level > 0){
-				Node temp = q.remove();			
-				System.out.print(temp.key+" ");			
-				if(temp.left != null){
-					q.add(temp.left);
-				}
-				if(temp.right != null){
-					q.add(temp.right);
-				}
-				level--;
-			}	
-			System.out.println();
+			if(node.right != null) {
+			   q.add(node.right);
+			}
+			
 		}
 	}
-	public void printReverseLavleTraversal(){
+	
+	// This method cannot print in proper order
+	public void printReverseLevelOrder(){
+		Queue<Node> q = new LinkedList<Node>();
+		Stack<Node> s = new Stack<Node>();
+		q.add(root);
+		while(q.size() >0) {
+			Node node = q.poll();
+			s.add(node);
+			if(node.left != null) {
+			   q.add(node.left);
+			}
+			if(node.right != null) {
+			   q.add(node.right);
+			}
+			
+		}
+		System.out.println();
+		while(!s.isEmpty()) {
+			System.out.print(s.pop().key+" ");
+		}
 		
 	}
-	public void printReverse(){
-		int height = height();
-		for(int i=0;i<height;i++){
+	public void printReverseLevelOrder2() {
+		int level = height(root);
+		System.out.println();
+		for(int i=level;i>0;i--) {
 			printReverse(root,i);
-			System.out.println();
-		}
-	}
-	public void printReverse(Node node, int i){
-		int h = height(node);
-		if(node != null){
-			if(i == h){
-				System.out.print(node.key+" ");
-			}else{
-				printReverse(node.left,i);
-				printReverse(node.right,i);
-			}
 		}
 		
 	}
+	
+	private void printReverse(Node node, int level) {
+        if(node == null) {
+        	return;
+        }
+		if(level ==0) {
+			System.out.print(node.key+" ");
+		}else if(level >0) {
+			printReverse(node.left, level-1);
+			printReverse(node.right, level-1);
+		}
+		
+	}
+
 	int height(Node curr){
 		Node node = curr;
 		int h =0;

@@ -1,5 +1,29 @@
 /**
  * http://www.geeksforgeeks.org/flattening-a-linked-list/
+ * 
+ *      
+ *     5 -> 10 -> 19 -> 28
+       |    |     |     |
+       V    V     V     V
+       7    20    22    35
+       |          |     |
+       V          V     V
+       8          50    40
+       |                |
+       V                V
+       30               45
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
  */
 
 
@@ -27,7 +51,7 @@ public class FlattenLinkedList {
 		mainList.root.right.right.right = head4;		
 		System.out.println(mainList.root);
 		mainList.flatten();
-		System.out.println(mainList.root);
+		mainList.printList();
 		
 		
 		
@@ -91,6 +115,13 @@ class ProblemLinkedList{
 		return node;
 				
 		
+	}
+	public void printList() {
+		Node node = root;
+		while(node != null) {
+			System.out.println(node.data+" ");
+			node = node.next;
+		}
 	}
 	
 	

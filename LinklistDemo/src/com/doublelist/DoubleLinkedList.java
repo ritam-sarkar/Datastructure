@@ -4,6 +4,7 @@
 package com.doublelist;
 
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
 /**
  * @author Ritam
@@ -17,15 +18,15 @@ public class DoubleLinkedList {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		DoublyList<Integer> myList = new DoublyList<Integer>();
-		LinkedList<Integer> link = new LinkedList<Integer>();
+		/*LinkedList<Integer> link = new LinkedList<Integer>();
 		link.add(1);
 		link.add(2);
 		link.add(3);
 		link.add(4);
 		link.add(5);
-		//link.add(6);		
-		int n = link.size();
-		System.out.println("middle ement from normal linked list "+link.get(n/2));
+		link.add(6);*/		
+		//int n = link.size();
+		/*System.out.println("middle ement from normal linked list "+link.get(n/2)); */
 		myList.addLast(1);
 		myList.addLast(2);
 		myList.addLast(3);
@@ -34,11 +35,19 @@ public class DoubleLinkedList {
 		myList.add(5, 4);
 		myList.addLast(5);
 		System.out.println("size "+myList.size());
-		System.out.println("last element "+myList.getLast());
+		/*System.out.println("last element "+myList.getLast());
 		System.out.println("first element "+myList.getFirst());
 		System.out.println("at index 2 "+myList.get(2));
 		System.out.println(" middle element "+myList.findMiddleElement());
-		System.out.println(" last 3rd element "+myList.find3rdLastElement());
+		System.out.println(" last 3rd element "+myList.find3rdLastElement());*/
+		myList.traverse();
+		System.out.println(myList.remove() + " after removal size "+myList.size());
+		myList.traverse();
+		System.out.println(myList.removeLast() + " after removal size "+myList.size());
+		myList.traverse();
+		System.out.println(myList.remove(2) + " after removal size "+myList.size());
+		myList.traverse();
+
 	}
 
 }
@@ -47,6 +56,7 @@ class DoublyList<T>{
 	private Node<T> first;
 	private Node<T> last;
 	private int modcount;
+	private int size;
 	
 	public void addFirst(T item){
 		Node<T> currNode = new Node<T>(item);
@@ -58,6 +68,7 @@ class DoublyList<T>{
 			this.first.setPrev(currNode);
 			this.first = currNode;
 		}
+		this.size++;
 		this.modcount++;
 	}
 	public void addLast(T item){
@@ -70,6 +81,7 @@ class DoublyList<T>{
 			this.last.setNext(currNode);
 			this.last = currNode;
 		}
+		this.size++;
 		this.modcount++;
 	}
 	
@@ -98,9 +110,84 @@ class DoublyList<T>{
 			}
 		}		
 	}
+	public T removeFirst() {
+		if(this.first == null) {
+			throw new NoSuchElementException();
+		}
+		return unLinkFirst(this.first);
+	}
+	private T unLinkFirst(Node<T> f) {
+		Node<T> next = f.next;
+		T data = f.data;
+		this.first = next;
+		f.data = null;
+		f.next = null;
+		if(this.first == null) {
+			this.last = null;
+		}else {
+			this.first.prev = null;
+		}
+		size--;
+		modcount++;
+		return data;
+	}
+	public T removeLast() {
+		if(this.last == null) {
+			throw new NoSuchElementException();
+		}
+		return unLinkLast(this.last);
+	}
+	public T remove() {
+		return removeFirst();
+	}
+	public T remove(int index) {
+		if(index < 0 || index >= size) {
+			throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
+		}
+		Node<T> node = node(index);
+		T data = node.data;
+		Node<T> previous = node.prev;
+		Node<T> next = node.next;
+		if(previous == null) {
+			this.first = node.next;
+		}else {
+			previous.next = node.next;
+		}
+		if(next == null) {
+			this.last = null;
+		}else {
+			next.prev = node.prev;
+		}		
+		node.data = null;
+		node.next = null;
+		node.prev = null;
+		size--;
+		modcount++;
+		return data;
+	}
+	private String outOfBoundsMsg(int index) {
+        return "Index: "+index+", Size: "+size;
+    }
+	private T unLinkLast(DoublyList<T>.Node<T> l) {
+		
+		Node<T> previous = this.last.prev;
+		T data = this.last.data;
+		this.last = previous;
+		l.data = null;
+		l.prev = null;
+		if(this.last == null) {
+			this.first = null;
+		}else {
+			this.last.next = null;
+		}
+		size--;
+		modcount++;
+		return data;
+	}
 	private void linkBefore(T item, Node<T> node) {
 		Node<T> currNode = new Node<T>(node.prev(),node,item);
 		node.setPrev(currNode);
+		this.size++;
 		this.modcount++;
 		
 	}
@@ -108,6 +195,7 @@ class DoublyList<T>{
 		Node<T> currNode = new Node<T>(this.last,null,item);
 		this.last.setNext(currNode);
 		this.last = currNode;
+		this.size++;
 		this.modcount++;
 		
 	}
@@ -125,6 +213,16 @@ class DoublyList<T>{
 			}
 		}
 		return y;		
+	}
+	public void traverse() {
+		if(this.first != null) {
+			Node<T> node = this.first;
+			while(node != null) {
+				System.out.print(node.data +" ");
+				node = node.next;
+			}
+			System.out.println();
+		}
 	}
 	
 	public T findMiddleElement(){
@@ -168,7 +266,7 @@ class DoublyList<T>{
 		return x;		
 	}
 	public int size(){
-		return this.modcount;
+		return this.size;
 	}
 	class Node<V>{
 		private Node<V> prev;

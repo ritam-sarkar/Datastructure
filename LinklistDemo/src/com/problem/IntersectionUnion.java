@@ -9,6 +9,14 @@ import java.util.Set;
 import com.problem.PlaindromeCheck.LinkList.Node;
 
 /**
+ * Input:
+   List1: 10->15->4->20
+   lsit2:  8->4->2->10
+    Output:
+   Intersection List: 4->10
+   Union List: 2->8->20->4->15->10
+   
+ *  https://www.geeksforgeeks.org/union-and-intersection-of-two-linked-lists/
  * @author Ritam
  *
  */
@@ -85,8 +93,9 @@ public class IntersectionUnion {
 			Set<Integer> set = new HashSet();
 			while(node1 != null && !set.contains(node1.data)){	
 				set.add(node1.data);
-				node1 = node1.next;	
 				list3.push(node1.data);
+				node1 = node1.next;
+
 			}
 			while(node2 != null && !set.contains(node2.data)){	
 				set.add(node2.data);
@@ -96,6 +105,8 @@ public class IntersectionUnion {
 			return list3;
 			
 		}
+		
+		
 		
 		
 		

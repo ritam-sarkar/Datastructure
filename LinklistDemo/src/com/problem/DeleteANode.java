@@ -22,8 +22,9 @@ public class DeleteANode {
 		list.root.next.next = list.new Node(3);
 		list.root.next.next.next = list.new Node(4);
 		list.root.next.next.next.next = list.new Node(5);
+		list.root.next.next.next.next.next = list.new Node(7);
 		//list.printList();
-		list.delete(5);
+		list.delete(1);
 		list.printList();
 		
 		
@@ -48,20 +49,16 @@ public class DeleteANode {
 	    }
 		public void delete(int item){
 			Node node = root;
-			Node prev =null;
-			while(node != null){				
-				if(node.data == item){
-					if(prev != null){
-						prev.next = node.next;						
-					}else{
-						// this is the first item;						
-						root = node.next;
-					}
-					break;
-				}
+			Node prev =node;
+			while(node.data != item) {
 				prev = node;
 				node = node.next;
-			}			
+			}
+			if(prev.data == node.data) {
+			    root = node.next;			    
+			}else {
+				prev.next = node.next;
+			}
 			
 		}
 		

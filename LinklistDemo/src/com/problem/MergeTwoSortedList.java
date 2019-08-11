@@ -40,15 +40,13 @@ public class MergeTwoSortedList {
 		   if(y == null){
 			   return x;
 		   }
-		   Node node = null;
-		   if(x.data < y.data){
-			   node = x;
-			   node.next = merge(x.next, y);
+		   if(x.data < y.data){			   
+			   x.next = merge(x.next, y);
+			   return x;
 		   }else{
-			   node =y;
-			   node.next = merge(y.next,x);
+			   y.next = merge(x, y.next);
+			   return y;
 		   }
-		   return node;
 		}
 		public void createList(int[] arr){
 			root = insert(root,arr,0);

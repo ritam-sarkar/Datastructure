@@ -37,7 +37,7 @@ class MyQueue<T> {
 	private int front =-1;
 	private int rear =-1;
 	private int capacity;
-	private int modcount=0;
+	private int size=0;
 	
 	public MyQueue(T[] arr){
 		this.arr = arr;
@@ -57,7 +57,7 @@ class MyQueue<T> {
 		if(isFull()){
 			System.out.println("Queue is full now");
 		}
-		this.modcount++;
+		this.size++;
 	}
 	public T dequeue(){
 		if(isEmpty()){
@@ -65,14 +65,14 @@ class MyQueue<T> {
 		}		
 		T data =  this.arr[front];
 		this.front++;
-		this.modcount--;
+		this.size--;
 		if(isEmpty()){
 			System.out.println("Queue is empty now");
 		}
 		return data;
 	}
 	public int size(){
-		return this.modcount;
+		return this.size;
 	}
 	public boolean isFull(){
 		if(this.rear == this.capacity-1){
