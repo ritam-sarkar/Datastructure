@@ -35,7 +35,7 @@ public class FlattenLinkedList {
 	public static void main(String[] args) {
           
 		ProblemLinkedList mainList = new ProblemLinkedList();
-		int[] arr1 = {5,8,9,16};
+		int[] arr1 = {5,7,8,30};
 		int[] arr2 = {10,12,14,19};
 		int[] arr3 = {15,23,25};
 		int[] arr4 = {20,29};
@@ -98,21 +98,20 @@ class ProblemLinkedList{
 		return node;
 	}
 	public Node merge(Node x, Node y){	
-		if(x == null){
-			return y;
-		}
-		if(y== null){
-			return x;
-		}		
-		Node node = null;
-		if(x.data < y.data){
-			node = x;
-			node.next = merge(x.next,y);				
-		}else{
-			node = y;
-			node.next = merge(x,y.next);
-		}
-		return node;
+		
+			if(x == null){
+				return y;
+			}
+			if(y== null){
+				return x;
+			}
+			if(x.data < y.data) {
+			  	x.next = merge(x.next, y);
+			  	return x;
+			} else {
+				y.next = merge(x, y.next);
+				return y;
+			}
 				
 		
 	}

@@ -15,11 +15,11 @@ public class SplitTwoHalves {
 		circularLinklist.head.next = circularLinklist.new Node<Integer>(2);
 		circularLinklist.head.next.next = circularLinklist.new Node<Integer>(3);
 		circularLinklist.head.next.next.next = circularLinklist.new Node<Integer>(4);
-		//circularLinklist.head.next.next.next.next = circularLinklist.new Node<Integer>(5);
-		circularLinklist.head.next.next.next.next= circularLinklist.head;
-		circularLinklist.len = 4;
+		circularLinklist.head.next.next.next.next = circularLinklist.new Node<Integer>(5);
+		circularLinklist.head.next.next.next.next.next= circularLinklist.head;
+		circularLinklist.len = 5;
 		circularLinklist.printList(circularLinklist.head);
-		circularLinklist.splitTwoHalves();
+		circularLinklist.splitTwoHalves2();
 		circularLinklist.printList(circularLinklist.head1);
 		circularLinklist.printList(circularLinklist.head2);
 
@@ -75,8 +75,29 @@ public class SplitTwoHalves {
 			head1End.next = null;
 			head2End.next = null;
 			head = null;
-					
 
+		}
+		// When length is not mentioned
+		public void splitTwoHalves2() {
+			Node slow = head;
+			Node fast = head;
+			do {
+				head1End = slow; 
+				slow = slow.next;
+				fast = fast.next != head ? fast.next.next : head;
+				head2 = slow;
+				
+			}while(fast != head);
+			
+			do {
+				head2End = slow;
+				slow = slow.next;
+			}while(slow != head);
+			
+			head1 = head;
+			head1End.next = null;
+			head2End.next = null;
+			
 		}
 
 	}

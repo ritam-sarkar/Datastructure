@@ -22,7 +22,8 @@ public class LCADemo {
 		tree.insert(10);
 		tree.insert(14);
 		System.out.println(tree.root);
-		System.out.println(tree.findLCA(tree.root, 10, 14));
+		System.out.println("Least common ancestor");
+		System.out.println(tree.findLCA(tree.root, 12, 14));
 		
 		
 

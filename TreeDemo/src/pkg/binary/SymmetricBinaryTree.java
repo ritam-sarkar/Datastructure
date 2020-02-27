@@ -41,7 +41,7 @@ public class SymmetricBinaryTree {
 		
 	}
 	boolean isSymmetric(Node node) {
-	 	return isMirror(node, node);
+	 	return isMirror(node.left, node.right);
 		
 	}
 	boolean isMirror(Node a, Node b){

@@ -79,7 +79,17 @@ class LinkedList{
     public void swapNode(int x, int y) {
        Node nodeX = null;
        Node nodeY = null;
-       Node nodeXPrev = null;
+       Node node = first;
+       while(node != null) {
+    	   if(node.data == x)
+    		   nodeX = node;
+    	   if(node.data == y)
+    		   nodeY = node;
+       }
+       nodeX.data = y;
+       nodeY.data = x;
+       
+       /*Node nodeXPrev = null;
        Node nodeYPrev = null;
        Node prev = null;
        Node node = first;
@@ -111,7 +121,7 @@ class LinkedList{
        Node Xnext = nodeX.next;
        Node Ynext = nodeY.next;
        nodeY.next = Xnext;
-       nodeX.next = Ynext;       
+       nodeX.next = Ynext; */      
        
     }
 	

@@ -8,8 +8,8 @@ public class RotateArraySearch {
 
 	public static void main(String[] args) {
 
-		int arr[] = {9,10,11,12,30,3,5,8};
-		System.out.println(search(arr, 0,arr.length-1,5));
+		int arr[] = {4,5,1,2,3};
+		System.out.println(search(arr, 0,arr.length-1,4));
 		
 	}
 	private static int search(int arr[], int start, int end, int k) {

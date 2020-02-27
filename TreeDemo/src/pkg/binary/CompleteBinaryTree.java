@@ -21,7 +21,7 @@ public class CompleteBinaryTree {
 		int[] arr = {1,2,4,5,6,7,8};
 		CompleteBinaryTree bt1 = new CompleteBinaryTree();
 		bt1.root = bt1.insertLevelOrder(arr, 0);
-		System.out.println(bt1);
+		System.out.println(bt1.isCompleteBT());
 		CompleteBinaryTree bt2 = new CompleteBinaryTree();
 		bt2.root = new Node(1);
 		bt2.root.left = new Node(2);
@@ -41,14 +41,14 @@ public class CompleteBinaryTree {
 		while(!queue.isEmpty()){
 			Node temp = queue.remove();
 			if(temp.left != null){
-				if(flag == true)
+				if(flag)
 					return false;
 				queue.add(temp.left);
 			}else{
 				flag = true;
 			}
 			if(temp.right != null){
-				if(flag == true)
+				if(flag)
 					return false;
 				queue.add(temp.right);
 			}else{
@@ -56,6 +56,7 @@ public class CompleteBinaryTree {
 			}
 		}
 		return true;
+		
 	}
 	static class Node{
 	  Node left;

@@ -21,6 +21,8 @@ public class CircularQueueDemo {
 		q.enqueue("C");		
 		System.out.println(q.size());
 		System.out.println("removded item "+q.dequeue());
+		System.out.println("removded item "+q.dequeue());
+		//System.out.println("removded item "+q.dequeue());
 		
 	}
 
@@ -44,47 +46,48 @@ class CircularQueue <T>{
 		
 	}
 	public void enqueue(T item){		
-		
+		System.out.println(" inserting "+item);
 		if(isFull()){
 			throw new IllegalStateException("Que is full cannot insert");
 		}else if(isEmpty()){
-			this.rear =0;
-			this.front =0;
+			rear =0;
+			front =0;
 		}else{
-			this.rear = (this.rear+1)%this.capacity;
+			rear = (rear+1)%capacity;
 		}
-		this.Q[this.rear] = item;		
+		Q[rear] = item;		
 		if(isFull()){
 			System.out.println("The que is full now");
 		}
-		this.elementCount++;
+		elementCount++;
 	}
 	public T dequeue(){
 		if(isEmpty()){
 			throw new IllegalStateException("Queue is empty ");
 		}
-		T data = this.Q[this.front];
-		this.front = (this.front+1)%this.capacity;
-		this.elementCount--;
-		if(isEmpty()){
-			System.out.println("This queue is empty now");
-		}
+		T data = Q[front];
+		if(front == rear) {
+			front =-1;
+			rear =-1;
+		}else {
+			front = (front+1)%capacity;
+		}		
+		elementCount--;		
 		return data;
 	}
 	public boolean isFull(){
-		if((this.rear+1)%this.capacity == this.front){
+		if((rear+1)%capacity == front){
 			return true;
 		}
 		return false;
 		
 	}
 	public boolean isEmpty(){
-		if(this.front ==-1 && this.rear == -1){
+		if(front ==-1 && rear == -1){
 			return true;
 		}
 		return false;
-	}
-	
+	}	
 }
 
 

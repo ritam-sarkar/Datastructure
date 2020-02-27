@@ -156,6 +156,10 @@ class BinaryFileBuffer  {
 	
 	public BinaryFileBuffer(File f) throws IOException {
 		originalfile = f;
+		/**
+		 * InputStream bounded = new BoundedInputStream(is, MAX_BYTE_COUNT);
+		 * BufferedReader reader = new BufferedReader(new InputStreamReader(bounded));
+		 */
 		fbr = new BufferedReader(new FileReader(f), BUFFERSIZE);
 		reload();
 	}

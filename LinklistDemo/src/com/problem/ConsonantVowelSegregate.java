@@ -25,7 +25,7 @@ public class ConsonantVowelSegregate {
 		LinkList linkList = new LinkList();
 	    char[] arr = {'R','i','t','S','o','m','U'};
 	    char[] arr2 = {'R','t','s'};
-	    linkList.insert(arr2);
+	    linkList.insert(arr);
 	    linkList.printList();
 	    linkList.segregate();
 	    linkList.printList();

@@ -8,7 +8,7 @@ public class FindSubTree {
 
 		Tree t1 = createParentTree();
 		Tree t2 = createSubTree();
-        System.out.println(isSubTree(t1.root,t2.root));	
+        System.out.println(isSubtree2(t1.root,t2.root));	
         
 		
 		
@@ -26,6 +26,24 @@ public class FindSubTree {
 			return true;
 		}
 		return isSubTree(parentRoot.left, childRoot) || isSubTree(parentRoot.right, childRoot);
+	}
+	
+	public static boolean isSubtree2(Tree.Node parentRoot, Tree.Node childRoot) {
+		if(childRoot == null) {
+			return true;
+		}
+		if(parentRoot == null && childRoot != null) {
+			return false;
+		}		
+		if(parentRoot != null && childRoot != null) {
+			if(parentRoot.data == childRoot.data) {
+				return isSubtree2(parentRoot.left, childRoot.left) && isSubtree2(parentRoot.right, childRoot.right);
+			}else {
+				return isSubtree2(parentRoot.left, childRoot) || isSubtree2(parentRoot.right, childRoot);
+			}
+		}
+		return false;
+		
 	}
 
 	private static boolean isIdentical(Node parent, Node child) {

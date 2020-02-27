@@ -26,7 +26,7 @@ public class QuickSortWithThreeMedian {
 		if(arr[mid] > arr[end]) {
 			swap(arr,end,mid);
 		}
-		swap(arr,mid,end-1);
+		swap(arr,mid,end);
 		int pivot = arr[mid];
 		int partIndex = partition(arr, pivot, start, end);
 		quicksort(arr, start, partIndex-1);

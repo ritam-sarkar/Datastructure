@@ -27,10 +27,7 @@ public class RemoveLoop {
         list.head.next.next.next.next.next = new LinkedList.Node(10);
         list.head.next.next.next.next.next.next = new LinkedList.Node(16);
         list.head.next.next.next.next.next.next.next = list.head.next.next.next.next;
-        System.out.println("first element of the loop "+list.findFirstLoopElement().data);
-        System.out.println(" Distance from start node to the first element of the loop "+list.countStraightength());
-        System.out.println(" Count loop length "+list.countLoopLength());
-        list.detectAndRemoveLoop(list.head);
+        System.out.println(" First node in the loop is "+ list.detectAndRemoveLoop(list.head));
         list.printList(list.head);
 	}
 
@@ -50,50 +47,22 @@ class LinkedList {
             node = node.next;
         }
 	}
-	public void detectAndRemoveLoop(Node node){			
+	public int detectAndRemoveLoop(Node node){			
 		Node fast = detectLoop(node);
+		Node slow = node;
 		if(fast != null) {
-			// loop exists
-			Node slow = node;
-			while(slow.next != fast.next){
+			// loop exists			
+			while(slow != fast){
 				slow = slow.next;
 				fast = fast.next;
 			}
 			fast.next = null;			
-		}		
+		}	
+		return slow.data;
 		
 	}
-	public Node findFirstLoopElement() {
-		Node fast = detectLoop(head);
-		if(fast != null) {
-			Node slow = head;
-			while(slow != fast) {
-				slow = slow.next;
-				fast = fast.next;
-			}
-			if(slow == fast) {
-				return slow;
-			}
-		}		
-	    return null;
-		
-	}
-	public int countStraightength() {
-		Node fast = detectLoop(head);
-		int count = 1;
-		if(fast != null) {
-			Node slow = head;
-			while(slow != fast) {
-				slow = slow.next;
-				fast = fast.next;
-				count++;
-			}
-			if(slow == fast) {
-				return count;
-			}
-		}
-		return 0;
-	}
+	
+	
 	private Node detectLoop(Node node) {
 		if(node == null || node.next == null) {
 			return null;
@@ -117,16 +86,7 @@ class LinkedList {
 		}
 		
 	}
-	public int countLoopLength() {
-		Node firstElement = findFirstLoopElement();
-		Node node = firstElement;
-		int count =1;
-		while(node.next != firstElement) {
-			count++;
-			node = node.next;
-		}
-		return count;
-	}
+	
 		
 	
 	

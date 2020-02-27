@@ -3,6 +3,8 @@
  */
 package com.circularlist;
 
+import java.util.NoSuchElementException;
+
 /**
  * @author ritsarka
  * https://www.geeksforgeeks.org/circular-queue-set-2-circular-linked-list-implementation/
@@ -19,15 +21,19 @@ public class CircuarQueueWithLinkList {
 		circularQueue.enQueue(2);
 		circularQueue.enQueue(3);
 		circularQueue.enQueue(4);
+		circularQueue.enQueue(5);
 		circularQueue.traverse();
-		circularQueue.deQueue();
-		circularQueue.deQueue();
+		System.out.println();
+		System.out.println("------------- Dequeue operation----------");
 		System.out.println(circularQueue.deQueue());
 		System.out.println(circularQueue.deQueue());
-		circularQueue.deQueue();
+		System.out.println(circularQueue.deQueue());
+		System.out.println(circularQueue.deQueue());
+		//circularQueue.deQueue();
 		circularQueue.enQueue(1);
 		circularQueue.enQueue(2);
 		circularQueue.traverse();
+		System.out.println();
 		System.out.println(circularQueue.deQueue());
 		
 		
@@ -47,46 +53,43 @@ public class CircuarQueueWithLinkList {
 		}
 		public void enQueue(T item){
 			Node<T> newNode = new Node(item);
-			if(front == null) {
-				front = newNode;
-			}else {
-				rear.next = newNode;
-			}	
-			rear = newNode;
+			if(isEmpty()) {
+				rear = newNode;
+				front = rear;
+			}
+			rear.next = newNode;
+			rear = rear.next;
 			rear.next = front;
 		}
 		public T deQueue() {
-			T item = null;
-			if(front == null) {
-				System.out.println(" Empty queue");
-				return null;
-			}else if(front == rear){
-				item = front.data;
+			if(isEmpty()) {
+				throw new NoSuchElementException();
+			}
+			T item = front.data;
+			if(front == rear) {
 				front = null;
 				rear = null;				
 			}else {
-				item = front.data;
-				rear.next = front.next;
-				Node removable = front;
 				front = front.next;
-				removable.data = null;
-				removable.next = null;
+				rear.next = front;
 			}
-			return item;
-			
+			return item;			
 		}
+		
 		public void traverse() {
 			if(front == null) {
 				System.out.println(" Empty list");
 			}else {
 				Node node = front;
-				do{
-				  System.out.print(node.data+"  ");	
-				  node = node.next;
+				do {
+					System.out.print(node.data);
+					node = node.next;
 				}while(node != front);
-				System.out.println();
 			}
 			
+		}
+		public boolean isEmpty() {
+			return rear == null;
 		}
 		
 	}

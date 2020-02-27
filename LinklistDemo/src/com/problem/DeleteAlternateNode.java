@@ -7,8 +7,9 @@ public class DeleteAlternateNode {
 	public static void main(String[] args) {
 
 		LinkedList list = new LinkedList();
-		int [] arr = {1,3,2,4,5,6,7,8,9};
+		int [] arr = {1,2,3,4,5,6,7,8,9};
 		list.insert(arr);
+		list.printList();
 		list.alternateDelete();
 		System.out.println(list);
 		list.printList();
@@ -61,6 +62,8 @@ public class DeleteAlternateNode {
 			}
 		}
 		void alternateDelete(){
+			
+			// Delete from second node
 			Node node = root;			
 			Node prev = node;
 			node = node.next;
@@ -70,6 +73,26 @@ public class DeleteAlternateNode {
 				if(prev != null)
 					node = node.next.next;				
 			}
+			
+			// Delete from first node
+			/*Node node = root;
+			Node prev = null;
+			while(node != null && node.next != null) {
+				Node next = node.next;
+				if(prev != null) {
+					prev.next = next;
+					prev = next;
+				}else {
+					prev = next;
+					root = prev;
+				}
+				prev = next;
+				Node removeNode = node;
+				node = node.next.next;
+				removeNode.next = null;				
+			}
+			prev.next = null;*/
+			
 			
 		}
 	}

@@ -19,6 +19,12 @@ public class LRUCacheDemo {
 	}
 
 }
+/**
+ * https://medium.com/@krishankantsinghal/my-first-blog-on-medium-583159139237
+ * https://www.interviewcake.com/concept/java/lru-cache
+ * @author ritsarka
+ *
+ */
 class LRUCache{
 	
 	private Entry start;
@@ -88,7 +94,7 @@ class LRUCache{
 		if(prev != null) {
 			prev.right = next;			
 		}else {
-			// when it is top node
+			// when it is start node
 			start = next;
 		}
 		if(next != null) {
