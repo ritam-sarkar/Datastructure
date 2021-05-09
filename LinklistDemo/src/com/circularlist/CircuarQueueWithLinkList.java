@@ -56,9 +56,10 @@ public class CircuarQueueWithLinkList {
 			if(isEmpty()) {
 				rear = newNode;
 				front = rear;
+			} else {
+				rear.next = newNode;
+				rear = rear.next;
 			}
-			rear.next = newNode;
-			rear = rear.next;
 			rear.next = front;
 		}
 		public T deQueue() {

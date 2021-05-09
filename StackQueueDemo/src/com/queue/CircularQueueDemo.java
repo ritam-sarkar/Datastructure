@@ -29,14 +29,14 @@ public class CircularQueueDemo {
 }
 
 class CircularQueue <T>{
-	private int capacity =0;
+	private int n =0;
 	private T[] Q;
 	private int front;
 	private int rear;
 	private int elementCount =0;
 	
 	public CircularQueue(T[] arr){
-		this.capacity = arr.length;
+		this.n = arr.length;
 		this.front = -1;
 		this.rear = -1;
 		this.Q = arr;
@@ -53,7 +53,7 @@ class CircularQueue <T>{
 			rear =0;
 			front =0;
 		}else{
-			rear = (rear+1)%capacity;
+			rear = (rear+1)% n;
 		}
 		Q[rear] = item;		
 		if(isFull()){
@@ -70,13 +70,13 @@ class CircularQueue <T>{
 			front =-1;
 			rear =-1;
 		}else {
-			front = (front+1)%capacity;
+			front = (front+1)% n;
 		}		
 		elementCount--;		
 		return data;
 	}
 	public boolean isFull(){
-		if((rear+1)%capacity == front){
+		if((rear+1)% n == front){
 			return true;
 		}
 		return false;

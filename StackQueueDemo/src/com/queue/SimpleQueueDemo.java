@@ -3,12 +3,6 @@
  */
 package com.queue;
 
-import java.util.ArrayDeque;
-import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.concurrent.ArrayBlockingQueue;
-
-
 /**
  * @author Ritam
  *
@@ -24,11 +18,20 @@ public class SimpleQueueDemo {
 		MyQueue<Integer> q = new MyQueue<Integer>(new Integer[3]);
 		q.enqueue(1);
 		q.enqueue(2);
+		System.out.println("size of queue is "+q.size());
 		q.enqueue(3);
+		System.out.println("size of queue is "+q.size());
+
 		System.out.println("remove "+q.dequeue());
+		System.out.println("remove "+q.dequeue());
+		System.out.println("size of queue is "+q.size());
+
+		System.out.println("remove "+q.dequeue());
+		System.out.println("size of queue is "+q.size());
+
+		// empty error
 		q.dequeue();
-		q.dequeue();
-		
+
 	}
 
 }
@@ -37,8 +40,7 @@ class MyQueue<T> {
 	private int front =-1;
 	private int rear =-1;
 	private int capacity;
-	private int size=0;
-	
+
 	public MyQueue(T[] arr){
 		this.arr = arr;
 		this.capacity = this.arr.length;
@@ -47,45 +49,47 @@ class MyQueue<T> {
 		if(isFull()){
 			throw new IllegalStateException(" Queue full cannot insert");
 		}
-		else if(isEmpty()){
-			this.front =0;
-			this.rear =0;
-		}else{
-			this.rear++;			
-		}	
-		this.arr[this.rear] = item;
+		if(isEmpty()){
+			front = 0;
+			rear = 0;
+		} else {
+			rear++;
+		}
+		this.arr[rear] = item;
 		if(isFull()){
 			System.out.println("Queue is full now");
 		}
-		this.size++;
 	}
 	public T dequeue(){
 		if(isEmpty()){
 			throw new IllegalStateException("Queue empty");
 		}		
 		T data =  this.arr[front];
-		this.front++;
-		this.size--;
+		if(front == rear){
+			front = -1;
+			rear = -1;
+		} else{
+			front = front+1;
+		}
 		if(isEmpty()){
 			System.out.println("Queue is empty now");
 		}
 		return data;
 	}
 	public int size(){
-		return this.size;
+		if(isEmpty()){
+			return 0;
+		} else {
+        return rear-front+1;
+		}
 	}
 	public boolean isFull(){
-		if(this.rear == this.capacity-1){
-			return true;
-		}
-		return false;
+		return rear == capacity-1;
 		
 	}
 	
 	public boolean isEmpty(){
-		if(this.front ==-1 && this.rear == -1){
-			return true;
-		} else if(this.front > this.rear){
+		if(front ==-1 && rear == -1){
 			return true;
 		}
 		return false;

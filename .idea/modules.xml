@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/LinklistDemo/LinklistDemo.iml" filepath="$PROJECT_DIR$/LinklistDemo/LinklistDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MapDemo/MapDemo.iml" filepath="$PROJECT_DIR$/MapDemo/MapDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RemoteSystemsTempFiles/RemoteSystemsTempFiles.iml" filepath="$PROJECT_DIR$/RemoteSystemsTempFiles/RemoteSystemsTempFiles.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Search_Sort/SearchSort.iml" filepath="$PROJECT_DIR$/Search_Sort/SearchSort.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StackQueueDemo/StackQueueDemo.iml" filepath="$PROJECT_DIR$/StackQueueDemo/StackQueueDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TreeDemo/TreeDemo.iml" filepath="$PROJECT_DIR$/TreeDemo/TreeDemo.iml" />
+    </modules>
+  </component>
+</project>
